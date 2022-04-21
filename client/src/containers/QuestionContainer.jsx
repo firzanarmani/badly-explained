@@ -67,6 +67,14 @@ function QuestionContainer({ hasStarted, questions, gameOverCallback }) {
     }
   }
 
+  function handleGiveUp() {
+    setQuestionsAnswered((prevState) => {
+      const newState = [...prevState]
+      newState[currentQuestion] = !prevState[currentQuestion]
+      return newState
+    })
+  }
+
   function loadOptions(inputValue, callback) {
     axios
       .get(API_URL + '/movie', {
@@ -183,7 +191,7 @@ function QuestionContainer({ hasStarted, questions, gameOverCallback }) {
         </Button>
       ) : (
         <Stack spacing={4} direction={'row'}>
-          <Button w={'full'} colorScheme={'red'} py={8} onClick={() => {}}>
+          <Button w={'full'} colorScheme={'red'} py={8} onClick={handleGiveUp}>
             Give up
           </Button>
           <Button
