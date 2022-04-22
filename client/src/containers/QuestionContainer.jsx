@@ -23,6 +23,7 @@ function QuestionContainer({ hasStarted, questions, gameOverCallback }) {
     return Array.from(questions).fill(false)
   })
   const [currentQuestion, setCurrentQuestion] = useState(0)
+  const [currentAnswer, setCurrentAnswer] = useState(0)
   const [guesses, setGuesses] = useState(() =>
     Array.from(questions).fill(new Array(5).fill(false))
   )
@@ -45,6 +46,7 @@ function QuestionContainer({ hasStarted, questions, gameOverCallback }) {
         return newState
       })
       setIsCorrect(true)
+      setCurrentAnswer(currentQuestion)
     } else {
       // If guess is wrong
       setGuesses((prevState) => {
@@ -63,6 +65,7 @@ function QuestionContainer({ hasStarted, questions, gameOverCallback }) {
           newState[currentQuestion] = !prevState[currentQuestion]
           return newState
         })
+        setCurrentAnswer(currentQuestion)
       }
     }
   }
@@ -73,6 +76,7 @@ function QuestionContainer({ hasStarted, questions, gameOverCallback }) {
       newState[currentQuestion] = !prevState[currentQuestion]
       return newState
     })
+    setCurrentAnswer(currentQuestion)
   }
 
   function loadOptions(inputValue, callback) {
@@ -115,7 +119,7 @@ function QuestionContainer({ hasStarted, questions, gameOverCallback }) {
         <ResultCard
           visible={!questionsAnswered[currentQuestion]}
           result={isCorrect}
-          movie={questions[currentQuestion].movie}
+          movie={questions[currentAnswer].movie}
         />
       </Container>
       <Flex>

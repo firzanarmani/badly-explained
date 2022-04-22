@@ -20,8 +20,7 @@ function QuestionCard({ visible, question }) {
         visible: { transform: 'rotateY(180deg)' },
         hidden: { transform: 'rotateY(0deg)' }
       }}
-      animate={visible ? 'visible' : 'hidden'}
-      transition={{ duration: 2 }}>
+      animate={visible ? 'visible' : 'hidden'}>
       <Stack spacing={4}>
         <Text align={'center'}>{`${question}`}</Text>
         {/* TODO Hint */}
