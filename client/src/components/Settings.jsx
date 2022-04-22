@@ -1,8 +1,32 @@
-import { Box, Button, Stack, useColorModeValue } from '@chakra-ui/react'
+import { MoonIcon, SunIcon } from '@chakra-ui/icons'
+import {
+  Box,
+  Button,
+  HStack,
+  IconButton,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  Spacer,
+  Stack,
+  Text,
+  Tooltip,
+  useColorMode,
+  useColorModeValue
+} from '@chakra-ui/react'
+import PropTypes from 'prop-types'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-function Settings() {
+function Settings({ settings, setSettings }) {
   const navigate = useNavigate()
+  const { colorMode, toggleColorMode } = useColorMode()
+
+  const [noOfQuestions, setNoOfQuestions] = useState(
+    parseInt(settings.noOfQuestions)
+  )
 
   return (
     <Box
@@ -12,18 +36,67 @@ function Settings() {
       py={8}
       px={{ base: 8, md: 16 }}>
       <Stack spacing={4}>
-        {/* TODO Add some useful settings */}
-        <Button colorScheme={'green'}>Coming soon</Button>
+        <HStack>
+          <Text fontWeight={'medium'}>No. of Questions Each Round</Text>
+          <Spacer />
+          <NumberInput
+            flex={'2'}
+            value={noOfQuestions}
+            onChange={(e) => {
+              setNoOfQuestions(parseInt(e))
+            }}
+            min={1}
+            max={20}>
+            <NumberInputField
+              disabled
+              _disabled={{ cursor: 'default', textColor: 'black' }}
+            />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+        </HStack>
+        <HStack>
+          <Text fontWeight={'medium'}>Color Theme</Text>
+          <Spacer />
+          <Tooltip
+            label={
+              colorMode === 'light'
+                ? 'Switch to dark mode'
+                : 'Switch to light mode'
+            }
+            closeOnClick={false}>
+            <IconButton
+              aria-label="Toggle Dark Mode"
+              icon={colorMode === 'light' ? <SunIcon /> : <MoonIcon />}
+              onClick={toggleColorMode}
+            />
+          </Tooltip>
+        </HStack>
       </Stack>
-      <Button
-        colorScheme={'red'}
-        mt={8}
-        w={'full'}
-        onClick={() => navigate(-1)}>
-        Go back
-      </Button>
+      <HStack mt={8}>
+        <Button colorScheme={'red'} w={'full'} onClick={() => navigate(-1)}>
+          Go back
+        </Button>
+        <Button
+          colorScheme={'green'}
+          w={'full'}
+          onClick={() => {
+            setSettings({ noOfQuestions: noOfQuestions })
+          }}>
+          Apply
+        </Button>
+      </HStack>
     </Box>
   )
+}
+
+Settings.propTypes = {
+  settings: PropTypes.shape({
+    noOfQuestions: PropTypes.number
+  }),
+  setSettings: PropTypes.func
 }
 
 export default Settings

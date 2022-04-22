@@ -7,7 +7,8 @@ import { useNavigate } from 'react-router-dom'
 import GameLoading from '../components/GameLoading'
 import QuestionContainer from './QuestionContainer'
 
-function GameContainer({ noOfQuestions }) {
+function GameContainer({ settings }) {
+  const { noOfQuestions } = settings
   const API_URL = import.meta.env.VITE_API_URL
   const navigate = useNavigate()
 
@@ -77,7 +78,9 @@ function GameContainer({ noOfQuestions }) {
 }
 
 GameContainer.propTypes = {
-  noOfQuestions: PropTypes.number
+  settings: PropTypes.shape({
+    noOfQuestions: PropTypes.number
+  })
 }
 
 export default GameContainer

@@ -1,4 +1,5 @@
 import { Container, useColorModeValue } from '@chakra-ui/react'
+import { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
 import MainMenu from './components/MainMenu'
@@ -9,6 +10,8 @@ import GameContainer from './containers/GameContainer'
 import MainContainer from './containers/MainContainer'
 
 function App() {
+  const [settings, setSettings] = useState({ noOfQuestions: 10 })
+
   return (
     <Container maxW={'100vw'} bg={useColorModeValue('gray.50', 'gray.800')}>
       <Container maxW={'container.xl'}>
@@ -21,7 +24,7 @@ function App() {
               </MainContainer>
             }
           />
-          <Route path="/game" element={<GameContainer noOfQuestions={3} />} />
+          <Route path="/game" element={<GameContainer settings={settings} />} />
           <Route
             path="/result"
             element={
@@ -30,15 +33,11 @@ function App() {
               </MainContainer>
             }
           />
-          {/* <Route
-            path="*"
-            element={}
-          /> */}
           <Route
             path="/settings"
             element={
               <MainContainer name="Settings">
-                <Settings />
+                <Settings settings={settings} setSettings={setSettings} />
               </MainContainer>
             }
           />
