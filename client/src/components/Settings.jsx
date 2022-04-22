@@ -47,10 +47,7 @@ function Settings({ settings, setSettings }) {
             }}
             min={1}
             max={20}>
-            <NumberInputField
-              disabled
-              _disabled={{ cursor: 'default', textColor: 'black' }}
-            />
+            <NumberInputField disabled _disabled={{ cursor: 'default' }} />
             <NumberInputStepper>
               <NumberIncrementStepper />
               <NumberDecrementStepper />
