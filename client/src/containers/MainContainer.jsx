@@ -18,6 +18,15 @@ function MainMenu({ name, children }) {
         </Stack>
 
         {children}
+
+        {/* <Stack></Stack> */}
+        <Text
+          textAlign={'center'}
+          fontWeight={'light'}
+          fontSize={'sm'}
+          color={'gray.500'}>
+          2022 Armani.DEV
+        </Text>
       </Stack>
     </Flex>
   )
