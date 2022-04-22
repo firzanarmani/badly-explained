@@ -23,7 +23,7 @@ function PostGame() {
       py={8}
       px={{ base: 8, md: 16 }}>
       <Stack spacing={4}>
-        <Heading size="lg" textAlign={'center'}>
+        <Heading size="md" textAlign={'center'} fontWeight={'light'}>
           You got
         </Heading>
         <Heading size={'2xl'} textAlign={'center'}>
