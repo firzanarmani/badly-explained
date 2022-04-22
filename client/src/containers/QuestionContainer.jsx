@@ -164,11 +164,13 @@ function QuestionContainer({ hasStarted, questions, gameOverCallback }) {
       </Flex>
       <FormControl id={'guess'}>
         <AsyncSelect
+          menuPlacement="auto"
           placeholder={'Guess here'}
           value={guessInput}
           defaultOptions
           loadOptions={loadOptions}
           onChange={(e) => setGuessInput(e)}
+          isDisabled={questionsAnswered[currentQuestion]}
         />
       </FormControl>
       {questionsAnswered[currentQuestion] ? (
