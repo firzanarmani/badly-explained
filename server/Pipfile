@@ -12,7 +12,6 @@ flask-db = "*"
 flask-marshmallow = "*"
 marshmallow-sqlalchemy = "*"
 gunicorn = "*"
-python-dotenv = "*"
 
 [dev-packages]
 
