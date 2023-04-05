@@ -12,6 +12,7 @@ flask-db = "*"
 flask-marshmallow = "*"
 marshmallow-sqlalchemy = "*"
 gunicorn = "*"
+importlib-metadata = "*"
 
 [dev-packages]
 
